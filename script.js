@@ -19,8 +19,8 @@ const materials = [
     new THREE.MeshBasicMaterial({ map: loader.load('images-2.jpeg') }),
     new THREE.MeshBasicMaterial({ map: loader.load('iamges-3.jpeg') }),
     new THREE.MeshBasicMaterial({ map: loader.load('images-4.jpeg') }),
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Green color for top face
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })  // Red color for bottom face
+    new THREE.MeshBasicMaterial({ map: loader.load('iamges-5.jpeg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-6.jpg') }),
 ];
 
 // Create a cube with different textures
