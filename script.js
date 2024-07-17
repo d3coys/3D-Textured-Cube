@@ -15,10 +15,10 @@ const loader = new THREE.TextureLoader();
 
 // Load textures
 const materials = [
-    new THREE.MeshBasicMaterial({ map: loader.load('texture1.jpg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('texture2.jpg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('texture3.jpg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('texture4.jpg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-1.jpg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-2.jpeg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('iamges-3.jpeg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-4.jpeg') }),
     new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Green color for top face
     new THREE.MeshBasicMaterial({ color: 0xff0000 })  // Red color for bottom face
 ];
