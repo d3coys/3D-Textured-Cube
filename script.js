@@ -15,13 +15,23 @@ const loader = new THREE.TextureLoader();
 
 // Load textures
 const materials = [
-    new THREE.MeshBasicMaterial({ map: loader.load('images-1.jpg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('images-2.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('iamges-3.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('images-4.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('iamges-5.jpeg') }),
-    new THREE.MeshBasicMaterial({ map: loader.load('images-6.jpg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-1.jpg', checkTexture, handleError) }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-2.jpeg', checkTexture, handleError) }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-3.jpeg', checkTexture, handleError) }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images-4.jpeg', checkTexture, handleError) }),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Green color for top face
+    new THREE.MeshBasicMaterial({ color: 0xff0000 })  // Red color for bottom face
 ];
+
+// Callback function to check if the texture has loaded
+function checkTexture(texture) {
+    console.log(`Texture loaded: ${texture.image.src}`);
+}
+
+// Callback function to handle errors
+function handleError(error) {
+    console.error('An error occurred loading the texture:', error);
+}
 
 // Create a cube with different textures
 const geometry = new THREE.BoxGeometry();
