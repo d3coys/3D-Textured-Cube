@@ -74,4 +74,48 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+// Event listeners for touch events on mobile devices
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+let xStart = null;
+let yStart = null;
+
+function handleTouchStart(event) {
+    const firstTouch = event.touches[0];
+    xStart = firstTouch.clientX;
+    yStart = firstTouch.clientY;
+}
+
+function handleTouchMove(event) {
+    if (!xStart || !yStart) {
+        return;
+    }
+
+    const xEnd = event.touches[0].clientX;
+    const yEnd = event.touches[0].clientY;
+
+    const xDiff = xStart - xEnd;
+    const yDiff = yStart - yEnd;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        // Horizontal swipe
+        if (xDiff > 0) {
+            rotateClockwise = false; // Swipe left
+        } else {
+            rotateClockwise = true; // Swipe right
+        }
+    } else {
+        // Vertical swipe
+        if (yDiff > 0) {
+            rotateSpeed = Math.max(0.01, rotateSpeed - 0.01); // Swipe up
+        } else {
+            rotateSpeed += 0.01; // Swipe down
+        }
+    }
+
+    xStart = null;
+    yStart = null;
+}
+
 animate();
