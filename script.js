@@ -6,8 +6,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Light source
-const light = new THREE.PointLight(0xFFFFFF, 1);
-light.position.set(10, 10, 10);
+const light = new THREE.PointLight(0xFFFFAA, 1);
+light.position.set(-10, 10, 10);
 scene.add(light);
 
 // Texture Loader
@@ -41,18 +41,37 @@ scene.add(cube);
 camera.position.z = 5;
 
 // Animation and rotation controls
+let rotateSpeed = 0.01;
 let rotateClockwise = true;
 
 function animate() {
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01 * (rotateClockwise ? 1 : -1);
-    cube.rotation.y += 0.01 * (rotateClockwise ? 1 : -1);
+    cube.rotation.x += rotateSpeed * (rotateClockwise ? 1 : -1);
+    cube.rotation.y += rotateSpeed * (rotateClockwise ? 1 : -1);
     renderer.render(scene, camera);
 }
 
 // Event listener for mouse click to toggle rotation direction
 document.addEventListener('click', () => {
     rotateClockwise = !rotateClockwise;
+});
+
+// Event listeners for arrow keys to control rotation speed and direction
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            rotateSpeed += 0.01; // Increase rotation speed
+            break;
+        case 'ArrowDown':
+            rotateSpeed = Math.max(0.01, rotateSpeed - 0.01); // Decrease rotation speed, minimum 0.01
+            break;
+        case 'ArrowLeft':
+            rotateClockwise = true; // Rotate clockwise
+            break;
+        case 'ArrowRight':
+            rotateClockwise = false; // Rotate counterclockwise
+            break;
+    }
 });
 
 animate();
